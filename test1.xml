@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <Module>
+   <ModulePrefs title="Hello World1z">
+   <Require feature="setprefs"/>
+   <Require feature="dynamic-height"/>
+   </ModulePrefs>
+   <UserPref name="json_url" display_name="json_url" required="true" default_value="https://clm.bdc6.aess.accenture.com/ccm1/service/com.ibm.team.filesystem.service.internal.rest.IFilesystemContentService/_t8m08Ju9EeKbNavVfYUuYw/_3ipnwDSnEeKjTZNjgnvewA/cpd.json?itemId=_dZhpcZxHEeKJ14pmzYeJ3g"/>
+   <UserPref name="jquery_url" display_name="jquery_url" required="true" default_value="https://clm.bdc6.aess.accenture.com/ccm1/service/com.ibm.team.filesystem.service.internal.rest.IFilesystemContentService/_t8m08Ju9EeKbNavVfYUuYw/_3ipnwDSnEeKjTZNjgnvewA/jquery.js?itemId=_dZhpdZxHEeKJ14pmzYeJ3g"/>
+   <UserPref name="flot_url" display_name="flot_url" required="true" default_value="https://clm.bdc6.aess.accenture.com/ccm1/service/com.ibm.team.filesystem.service.internal.rest.IFilesystemContentService/_t8m08Ju9EeKbNavVfYUuYw/_3ipnwDSnEeKjTZNjgnvewA/jquery.flot.js?itemId=_dZhpdJxHEeKJ14pmzYeJ3g"/>
+   <UserPref name="app_html_url" display_name="app_html_url" required="true" default_value="https://clm.bdc6.aess.accenture.com/ccm1/service/com.ibm.team.filesystem.service.internal.rest.IFilesystemContentService/_t8m08Ju9EeKbNavVfYUuYw/_3ipnwDSnEeKjTZNjgnvewA/CopyPasteDetection.htm?itemId=_dZX4cZxHEeKJ14pmzYeJ3g"/>
+   <UserPref name="app_js_url" display_name="app_js_url" required="true" default_value="https://clm.bdc6.aess.accenture.com/ccm1/service/com.ibm.team.filesystem.service.internal.rest.IFilesystemContentService/_t8m08Ju9EeKbNavVfYUuYw/_3ipnwDSnEeKjTZNjgnvewA/CopyPasteDetection.js?itemId=_ApOIAJxhEeK4X-Z0yB9ViQ"/>
+   <Content type="html">
+     <![CDATA[
+<html>
+
+<head>
+
+<script>
+
+// oop
+function ams_bootstrap_Util() {
+}
+
+
+ams_bootstrap_Util.prototype.load_js = function(js_file)
+{
+  var fileref=document.createElement('script')
+  fileref.setAttribute("type","text/javascript")
+  fileref.setAttribute("src", js_file)
+  fileref.setAttribute("async", "false")
+  if (typeof fileref!="undefined")
+  document.getElementsByTagName("head")[0].appendChild(fileref)    
+};
+
+
+ams_bootstrap_Util.prototype.load_js_2 = function(url, callback)
+{
+   var script = document.createElement("script")
+    script.type = "text/javascript";
+
+    if (script.readyState){  //IE
+        script.onreadystatechange = function(){
+            if (script.readyState == "loaded" ||
+                    script.readyState == "complete"){
+                script.onreadystatechange = null;
+                callback();
+            }
+        };
+    } else {  //Others
+        script.onload = function(){
+            callback();
+        };
+    }
+
+    script.src = url;
+    document.getElementsByTagName("head")[0].appendChild(script);    
+};
+
+
+
+
+
+ams_bootstrap_Util.prototype.load_css = function(css_file)
+{
+  var fileref=document.createElement("link")
+  fileref.setAttribute("rel", "stylesheet")
+  fileref.setAttribute("type", "text/css")
+  fileref.setAttribute("href", css_file)
+  if (typeof fileref!="undefined")
+	document.getElementsByTagName("head")[0].appendChild(fileref)  
+};
+
+
+function loadCss(cssText, callback){
+    var style = document.createElement('style');
+    style.type='text/css';
+    //if(callBack != undefined){
+    //    style.onload = function(){
+    //        callBack();
+    //    };
+    //}
+    style.innerHTML = cssText;
+    document.getElementsByTagName("head")[0].appendChild(style);
+}
+
+
+
+
+ams_bootstrap_Util.prototype.load_css_b = function(css_file)
+{
+	var xmlhttp;
+	if (window.XMLHttpRequest)
+	  {// code for IE7+, Firefox, Chrome, Opera, Safari
+	  xmlhttp=new XMLHttpRequest();
+	  }
+	else
+	  {// code for IE6, IE5
+	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	  }
+	xmlhttp.open("GET",css_file,false);
+	xmlhttp.send();
+	loadCss(xmlhttp.responseText)
+
+
+
+  //var fileref=document.createElement("link")
+  //fileref.setAttribute("rel", "stylesheet")
+  //fileref.setAttribute("type", "text/css")
+  //fileref.setAttribute("href", css_file)
+  //if (typeof fileref!="undefined")
+	//document.getElementsByTagName("head")[0].appendChild(fileref)  
+};
+
+
+
+
+
+
+
+
+
+ams_bootstrap_Util.prototype.load_xml_doc =function(div, html_file)
+{
+	var xmlhttp;
+	if (window.XMLHttpRequest)
+	  {// code for IE7+, Firefox, Chrome, Opera, Safari
+	  xmlhttp=new XMLHttpRequest();
+	  }
+	else
+	  {// code for IE6, IE5
+	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	  }
+	xmlhttp.onreadystatechange=function()
+	  {
+	  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+		document.getElementById(div).innerHTML=xmlhttp.responseText;
+		}
+	  }
+	xmlhttp.open("GET",html_file,true);
+	xmlhttp.send();
+};
+
+
+
+// create global variable for this.
+var ams_bootstrap_util = new ams_bootstrap_Util();
+var prefs = new gadgets.Prefs();
+//
+
+
+// oop
+
+
+function do_onload(){
+    // https://myjazzserver.net:9443/ccm/service/com.ibm.team.filesystem.service.internal.rest.IFilesystemContentService/_qNQiwHqqEeK2suPg4gQqWg/_6Ex1EHqqEeK2suPg4gQqWg/t1.css?itemId=_Bf-ygHxEEeK2suPg4gQqWg&stateId=_zxOX9HxNEeK2suPg4gQqWg&platformLineDelimiter=CRLF
+	//ams_bootstrap_util.load_css_b("https://myjazzserver.net:9443/ccm/service/com.ibm.team.filesystem.service.internal.rest.IFilesystemContentService/_qNQiwHqqEeK2suPg4gQqWg/_6Ex1EHqqEeK2suPg4gQqWg/t1.css?itemId=_Bf-ygHxEEeK2suPg4gQqWg")
+	//ams_bootstrap_util.load_xml_doc("myDiv","https://myjazzserver.net:9443/ccm/service/com.ibm.team.filesystem.service.internal.rest.IFilesystemContentService/_qNQiwHqqEeK2suPg4gQqWg/_6Ex1EHqqEeK2suPg4gQqWg/t1.html?itemId=_8ujD0HxDEeK2suPg4gQqWg&stateId=_8usNxHxDEeK2suPg4gQqWg&platformLineDelimiter=CRLF")
+	//ams_bootstrap_util.load_js("https://myjazzserver.net:9443/ccm/service/com.ibm.team.filesystem.service.internal.rest.IFilesystemContentService/_qNQiwHqqEeK2suPg4gQqWg/_6Ex1EHqqEeK2suPg4gQqWg/t1.js?itemId=_V3lIUHxFEeK2suPg4gQqWg&stateId=_V3qn43xFEeK2suPg4gQqWg&platformLineDelimiter=CRLF")
+	//ams_bootstrap_util.load_xml_doc("myDiv","https://clm.bdc6.aess.accenture.com/ccm1/service/com.ibm.team.filesystem.service.internal.rest.IFilesystemContentService/_t8m08Ju9EeKbNavVfYUuYw/_3ipnwDSnEeKjTZNjgnvewA/CopyPasteDetection.htm?itemId=_dZX4cZxHEeKJ14pmzYeJ3g");
+	ams_bootstrap_util.load_xml_doc("myDiv",prefs.getString('app_html_url'));
+
+	//ams_bootstrap_util.load_js_2("https://clm.bdc6.aess.accenture.com/ccm1/service/com.ibm.team.filesystem.service.internal.rest.IFilesystemContentService/_t8m08Ju9EeKbNavVfYUuYw/_3ipnwDSnEeKjTZNjgnvewA/jquery.js?itemId=_dZhpdZxHEeKJ14pmzYeJ3g", do_onload_jquery);
+	ams_bootstrap_util.load_js_2(prefs.getString('jquery_url'),do_onload_jquery);
+
+	}
+
+function do_onload_jquery() {
+	console.log('jquery_loaded_start');
+	//ams_bootstrap_util.load_js_2("https://clm.bdc6.aess.accenture.com/ccm1/service/com.ibm.team.filesystem.service.internal.rest.IFilesystemContentService/_t8m08Ju9EeKbNavVfYUuYw/_3ipnwDSnEeKjTZNjgnvewA/jquery.flot.js?itemId=_dZhpdJxHEeKJ14pmzYeJ3g", do_onload_flot);	
+	ams_bootstrap_util.load_js_2(prefs.getString('flot_url'), do_onload_flot);
+	
+}
+	
+function do_onload_flot() {
+	console.log('flot_loaded_start');
+	//ams_bootstrap_util.load_js_2("https://clm.bdc6.aess.accenture.com/ccm1/service/com.ibm.team.filesystem.service.internal.rest.IFilesystemContentService/_t8m08Ju9EeKbNavVfYUuYw/_3ipnwDSnEeKjTZNjgnvewA/CopyPasteDetection.js?itemId=_ApOIAJxhEeK4X-Z0yB9ViQ",do_onload_app);
+	ams_bootstrap_util.load_js_2(prefs.getString('app_js_url'),do_onload_app);
+}	
+	
+function do_onload_app() {
+	console.log('app_loaded_start');
+		//do_stuff("https://clm.bdc6.aess.accenture.com/ccm1/service/com.ibm.team.filesystem.service.internal.rest.IFilesystemContentService/_t8m08Ju9EeKbNavVfYUuYw/_3ipnwDSnEeKjTZNjgnvewA/cpd.json?itemId=_dZhpcZxHEeKJ14pmzYeJ3g");
+		do_stuff(prefs.getString('json_url'));
+}	
+	
+window.onload = do_onload
+
+
+</script>
+
+
+
+</head>
+
+<body>
+
+<div id="myDiv"><h2>See this change</h2></div>
+
+
+
+</body>
+
+
+</html>  
+	     
+     ]]>
+   </Content>
+ </Module>
